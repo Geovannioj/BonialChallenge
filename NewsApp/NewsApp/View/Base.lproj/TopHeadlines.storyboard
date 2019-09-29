@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tgR-dS-eMt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eGH-LC-MsI">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,42 +10,66 @@
     </dependencies>
     <scenes>
         <!--Top Headlines View Controller-->
-        <scene sceneID="sNY-6J-IWV">
+        <scene sceneID="TYp-xO-wLQ">
             <objects>
-                <collectionViewController id="tgR-dS-eMt" customClass="TopHeadlinesViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TLT-SM-Qc1">
+                <collectionViewController id="eGH-LC-MsI" customClass="TopHeadlinesViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QOS-7x-Cxm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zwh-2o-NPM">
-                            <size key="itemSize" width="172" height="217"/>
-                            <size key="headerReferenceSize" width="50" height="222"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1MW-oP-c73">
+                            <size key="itemSize" width="152" height="190"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Z4I-NP-wDF" customClass="ArticleCollectionViewCell" customModule="NewsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="222" width="172" height="217"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Hth-kn-p5d">
+                                <rect key="frame" x="0.0" y="0.0" width="152" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="172" height="217"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="152" height="190"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lDy-vU-svj">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="222"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
                         <connections>
-                            <outlet property="dataSource" destination="tgR-dS-eMt" id="iGZ-H2-jlZ"/>
-                            <outlet property="delegate" destination="tgR-dS-eMt" id="x7C-el-Su1"/>
+                            <outlet property="dataSource" destination="eGH-LC-MsI" id="M6k-Rk-bJd"/>
+                            <outlet property="delegate" destination="eGH-LC-MsI" id="ml7-cH-3BN"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eWI-Pc-qYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c7p-Me-YNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-201.44927536231884" y="-43.526785714285715"/>
+            <point key="canvasLocation" x="-259.4202898550725" y="-48.214285714285715"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Cde-lr-zg8">
+            <objects>
+                <tableViewController id="S4e-xd-Dvd" customClass="TableViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5w9-Xn-LWQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="93Z-rR-Qlz">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93Z-rR-Qlz" id="AGE-xO-gEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="S4e-xd-Dvd" id="6Hb-ff-S9K"/>
+                            <outlet property="delegate" destination="S4e-xd-Dvd" id="4NF-gZ-Gwi"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hwc-1Y-zpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="-48"/>
         </scene>
     </scenes>
 </document>

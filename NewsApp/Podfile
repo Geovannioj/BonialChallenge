@@ -8,7 +8,9 @@ target 'NewsApp' do
   # Pods for NewsApp
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  target 'NewsAppTests' do
+  pod 'Kingfisher'
+ 
+ target 'NewsAppTests' do
     inherit! :search_paths
     # Pods for testing
   end

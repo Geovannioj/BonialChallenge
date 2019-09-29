@@ -63,6 +63,12 @@ class Article: Codable {
         return self.content
     }
     
+    func returnCompleteArticle() -> String {
+        let title = getTitle()
+        let description = getDescription()
+        return "\(title) \n \(description)"
+    }
+    
     deinit {
         
     }
