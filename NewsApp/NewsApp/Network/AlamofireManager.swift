@@ -8,30 +8,50 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class AlamofireManager: NSObject {
     
     private var apiKey: String = "09b79be801fc4f35b6e48a8026ef5d7e"
     
-    func requestData(url: String, country: String ,amount: Int, completion: @escaping (Article?) -> Void ) {
+    func requestData(url: String, country: String ,amount: Int, completion: @escaping ([Article]?) -> Void ) {
+        var articlesArray: [Article] = []
+        
         Alamofire.request(url,
                           parameters:["country": country,"pageSize":amount],
                           headers:["x-api-key": self.apiKey])
         .responseJSON { response in
-            guard response.result.isSuccess,
-                let value = response.result.value else {
-                    print("Something went wrong with the request")
-                    completion(nil)
-                    return
-                }
             
-            do {
-                let decoder = JSONDecoder()
-                let articles = try? decoder.decode(Article.self, from: value as! Data)
-                completion(articles)
-            } catch let error {
-                print(error)
-                completion(nil)
+            if let repsonseValue = response.result.value {
+                let jsonResponse = JSON(response.result.value)
+                
+                //JSON atriutes extraction to create the Article Ojbect
+                for articleItem in jsonResponse["articles"] {
+                    
+                    let sourceID = String(describing:articleItem.1["source"]["id"])
+                    let sourceName = String(describing:articleItem.1["source"]["name"])
+                    let source = Source(id: sourceID, name: sourceName)
+                    
+                    let author = String(describing:articleItem.1["author"])
+                    let title = String(describing:articleItem.1["title"])
+                    let description = String(describing:articleItem.1["description"])
+                    let url = String(describing:articleItem.1["url"])
+                    let urlImage = String(describing:articleItem.1["urlToImage"])
+                    let publishedAt = String(describing:articleItem.1["publishedAt"])
+                    let content = String(describing:articleItem.1["content"])
+                    
+                    let article = Article(source: source,
+                                          author: author,
+                                          title: title,
+                                          description: description,
+                                          url: url,
+                                          urlImage: urlImage,
+                                          publishedAt: publishedAt,
+                                          content: content)
+                    articlesArray.append(article)
+                }
+                completion(articlesArray)
+            
             }
         }
     }
