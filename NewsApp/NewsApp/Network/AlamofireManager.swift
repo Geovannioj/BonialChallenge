@@ -14,6 +14,13 @@ class AlamofireManager: NSObject {
     
     private var apiKey: String = "09b79be801fc4f35b6e48a8026ef5d7e"
     
+    /***
+     Method to get the data from the News API
+     parameter url: url to the API's endpoint
+     parameter country: country to get the specific news from there
+     parameter amount: amount of news that will be loaded
+     
+     ***/
     func requestData(url: String, country: String ,amount: Int, completion: @escaping ([Article]?) -> Void ) {
         var articlesArray: [Article] = []
         
@@ -23,7 +30,7 @@ class AlamofireManager: NSObject {
         .responseJSON { response in
             
             if let repsonseValue = response.result.value {
-                let jsonResponse = JSON(response.result.value)
+                let jsonResponse = JSON(repsonseValue)
                 
                 //JSON atriutes extraction to create the Article Ojbect
                 for articleItem in jsonResponse["articles"] {
