@@ -10,7 +10,7 @@ import Foundation
 
 class Article: Codable {
     
-    private weak var source: Source?
+    private var source: Source
     private var author: String
     private var title: String
     private var description: String
@@ -39,7 +39,7 @@ class Article: Codable {
     }
     
     func getSource() -> Source{
-        return self.source!
+        return self.source
     }
     func getAuthor() -> String {
         return self.author

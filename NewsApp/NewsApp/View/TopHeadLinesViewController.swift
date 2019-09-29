@@ -77,8 +77,7 @@ class TopHeadlinesViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as? ArticleCollectionViewCell
         let article = artitles[indexPath.row]
-        cell?.titleLbl.text = article.getTitle()
-        cell?.descriptionLbl.text = article.getDescription()
+        cell?.fulfillCell(article: article)
         
         return cell!
         
