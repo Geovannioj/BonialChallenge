@@ -19,11 +19,19 @@ class Source: Codable {
     }
     
     func getSourceID() -> String {
-        return self.id
+        if self.id == "null" {
+            return "'"
+        } else {
+            return self.id
+        }
     }
     
     func getSourceName() -> String {
-        return self.name
+        if self.name == "null" {
+            return ""
+        } else {
+            return self.name
+        }
     }
     
     deinit {

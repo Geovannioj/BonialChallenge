@@ -12,6 +12,7 @@ import Alamofire
 class TopHeadlinesViewController: UICollectionViewController {
 
     private var artitles: [Article] = []
+    var articleToExpand: Article?
     private var presenter: TopHeadLinesPresenter?
     private let itensShown = 6
     private let cellIdentifier = "cell"
@@ -27,20 +28,14 @@ class TopHeadlinesViewController: UICollectionViewController {
     private var articlesAmount = 6
     private var currentPage = 0
     private var totalAmount = 0
-    
-    
-    private let sectionInsets = UIEdgeInsets(top: 50.0,
-                                             left: 20.0,
-                                             bottom: 50.0,
-                                             right: 20.0)
-    
+    private let segueID = "expandArticle"
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCustomCell()
         network = AlamofireManager()
         getArticles()
-        self.status = "Buscando notícias, aguarde..."
-        print("Iniciou aplicação")
        
     }
 
@@ -82,9 +77,16 @@ class TopHeadlinesViewController: UICollectionViewController {
         return cell!
         
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.segueID {
+            if let newsPageController = segue.destination as? NewsPageViewController {
+                newsPageController.article = self.articleToExpand
+            }
+        }
+    }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected cell \(indexPath.item)")
+        self.articleToExpand = self.artitles[indexPath.row]
+        performSegue(withIdentifier: self.segueID, sender: nil)
     }
     
     private func registerCustomCell() {

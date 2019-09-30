@@ -24,7 +24,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     func fulfillCell(article: Article) {
         titleLbl.text = article.getTitle()
         descriptionLbl.text = article.getDescription()
-        sourceLbl.text = article.getSource().getSourceName()
+        sourceLbl.text = "From: \(article.getSource().getSourceName())"
         
         if let url = URL(string: article.getURLImage()) {
             imageView.kf.indicatorType = .activity

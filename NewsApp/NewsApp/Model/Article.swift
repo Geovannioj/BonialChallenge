@@ -42,25 +42,46 @@ class Article: Codable {
         return self.source
     }
     func getAuthor() -> String {
-        return self.author
+        if self.author == "null" {
+            return ""
+        } else {
+            return self.author
+        }
+        
     }
     func getTitle() -> String {
         return self.title
     }
     func getDescription() -> String {
-        return self.description
+        if self.description == "null" {
+            return ""
+        } else {
+            return self.description
+        }
     }
     func getURL() -> String {
-        return self.url
+        if self.url == "null" {
+            return ""
+        } else {
+            return self.url
+        }
     }
     func getURLImage() -> String {
         return self.urlImage
     }
     func getPublishedAt() -> String {
-        return self.publishedAt
+        if publishedAt == "null" {
+            return ""
+        } else {
+            return self.publishedAt
+        }
     }
     func getContent() -> String {
-        return self.content
+        if self.content == "null" {
+            return ""
+        } else {
+            return self.content
+        }
     }
     
     func returnCompleteArticle() -> String {
