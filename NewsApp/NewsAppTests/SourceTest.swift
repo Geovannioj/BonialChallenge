@@ -1,24 +1,33 @@
 //
-//  NewsAppTests.swift
+//  SourceTest.swift
 //  NewsAppTests
 //
-//  Created by Geovanni Oliveira de Jesus on 28/09/19.
+//  Created by Geovanni Oliveira de Jesus on 01/10/19.
 //  Copyright © 2019 Geovanni Oliveira de Jesus. All rights reserved.
 //
 
 import XCTest
 @testable import NewsApp
+class SourceTest: XCTestCase {
 
-class NewsAppTests: XCTestCase {
-
+    var source: Source?
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        source = Source(id: "001", name: "BBC")
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testSourceNotNil() {
+        XCTAssertNotNil(source)
     }
 
+    func testSourceID() {
+        XCTAssertEqual(source?.getSourceID(), "001")
+    }
+    
+    func testSourceName() {
+        XCTAssertEqual(source?.getSourceName(), "BBC")
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
