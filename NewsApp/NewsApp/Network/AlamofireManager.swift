@@ -14,18 +14,19 @@ class AlamofireManager: NSObject {
     
     private var apiKey: String = "09b79be801fc4f35b6e48a8026ef5d7e"
     
-    /***
+    /**
      Method to get the data from the News API
-     parameter url: url to the API's endpoint
-     parameter country: country to get the specific news from there
-     parameter amount: amount of news that will be loaded
+     - parameter url: url to the API's endpoint
+     - parameter country: country to get the specific news from there
+     - parameter amount: amount of news that will be loaded
      
-     ***/
-    func requestData(url: String, country: String ,amount: Int, completion: @escaping ([Article]?) -> Void ) {
+     */
+    func requestData(url: String, country: String ,amount: Int, page: Int ,completion: @escaping ([Article]?) -> Void ) {
         var articlesArray: [Article] = []
         
+        //Alamofire get request
         Alamofire.request(url,
-                          parameters:["country": country,"pageSize":amount],
+                          parameters:["country": country,"pageSize":amount, "page": page],
                           headers:["x-api-key": self.apiKey])
         .responseJSON { response in
             
@@ -34,11 +35,11 @@ class AlamofireManager: NSObject {
                 
                 //JSON atriutes extraction to create the Article Ojbect
                 for articleItem in jsonResponse["articles"] {
-                    
+
                     let sourceID = String(describing:articleItem.1["source"]["id"])
                     let sourceName = String(describing:articleItem.1["source"]["name"])
                     let source = Source(id: sourceID, name: sourceName)
-                    
+
                     let author = String(describing:articleItem.1["author"])
                     let title = String(describing:articleItem.1["title"])
                     let description = String(describing:articleItem.1["description"])
@@ -46,7 +47,7 @@ class AlamofireManager: NSObject {
                     let urlImage = String(describing:articleItem.1["urlToImage"])
                     let publishedAt = String(describing:articleItem.1["publishedAt"])
                     let content = String(describing:articleItem.1["content"])
-                    
+
                     let article = Article(source: source,
                                           author: author,
                                           title: title,

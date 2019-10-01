@@ -11,6 +11,7 @@ import Kingfisher
 
 class ArticleCollectionViewCell: UICollectionViewCell {
     
+    //MARK: cell outlets 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var timePassedLbl: UILabel!
@@ -21,6 +22,11 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
+    /**
+     Method to get an instance of article and extract its's information to fulfill
+     a collectionView Cell with them
+     - parameter article: article instance to get it's atibute info
+     */
     func fulfillCell(article: Article) {
         titleLbl.text = article.getTitle()
         descriptionLbl.text = article.getDescription()
