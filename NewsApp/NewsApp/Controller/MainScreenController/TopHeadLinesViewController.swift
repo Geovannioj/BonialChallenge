@@ -33,6 +33,9 @@ class TopHeadlinesViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let layout = collectionView?.collectionViewLayout as? NewsCustomLayout {
+            layout.delegate = self
+        }
         registerCustomCell()
         network = AlamofireManager()
         getArticles()
@@ -60,15 +63,12 @@ class TopHeadlinesViewController: UICollectionViewController {
 
 //MARK: - Extension to the CollectionView's methods
 extension TopHeadlinesViewController{
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         return self.artitles.count
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier,
@@ -93,6 +93,9 @@ extension TopHeadlinesViewController{
         performSegue(withIdentifier: self.segueID, sender: nil)
     }
     
+    /**
+     Method that registers the custom cell to be used in the CollectionView
+     */
     private func registerCustomCell() {
         let articleCell = UINib(nibName: "ArticleCell", bundle: nil)
         self.collectionView.register(articleCell, forCellWithReuseIdentifier: self.cellIdentifier)
@@ -105,4 +108,19 @@ extension TopHeadlinesViewController{
             print("Carregando mais notícias")
         }
     }
+}
+extension TopHeadlinesViewController: NewsLayoutDelegate {
+    func isDeviceOrientationPortrait() -> Bool {
+        let devOrientation = UIDevice.current.orientation.isPortrait
+        return devOrientation
+    }
+    
+    func invalidateCollectionLayout() {
+        if let layout = self.collectionViewLayout as? NewsCustomLayout {
+            layout.invalidateLayout()
+            
+        }
+    }
+    
+    
 }
