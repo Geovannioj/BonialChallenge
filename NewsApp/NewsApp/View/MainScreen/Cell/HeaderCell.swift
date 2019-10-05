@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import UIKit
+
+class HeaderCell: UICollectionReusableView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .purple
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}

@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewsLayoutDelegate: AnyObject {
     func isDeviceOrientationPortrait() -> Bool
+    func invalidateCollectionLayout() 
 }
 
 class NewsCustomLayout: UICollectionViewLayout {
@@ -36,8 +37,10 @@ class NewsCustomLayout: UICollectionViewLayout {
     override func prepare() {
         if (delegate?.isDeviceOrientationPortrait())! {
             self.numberOfColumns = 2
+            delegate?.invalidateCollectionLayout()
         } else {
             self.numberOfColumns = 3
+            delegate?.invalidateCollectionLayout()
         }
         
         let columnWidth = contentWidth / CGFloat(numberOfColumns)

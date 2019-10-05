@@ -63,9 +63,6 @@ class TopHeadlinesViewController: UICollectionViewController {
 
 //MARK: - Extension to the CollectionView's methods
 extension TopHeadlinesViewController{
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return self.artitles.count / 7
-//    }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
@@ -116,6 +113,13 @@ extension TopHeadlinesViewController: NewsLayoutDelegate {
     func isDeviceOrientationPortrait() -> Bool {
         let devOrientation = UIDevice.current.orientation.isPortrait
         return devOrientation
+    }
+    
+    func invalidateCollectionLayout() {
+        if let layout = self.collectionViewLayout as? NewsCustomLayout {
+            layout.invalidateLayout()
+            
+        }
     }
     
     
